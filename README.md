@@ -1,0 +1,2 @@
+# PRCV2020-LSPRC
+PRCV2020大规模行人检索竞赛（LSPRC）
