@@ -58,3 +58,33 @@ def saveTxt(filename, data):
         for item in data:
             f.write("%s\n" % item)
     return
+
+def collectFolders(root_dir):
+    dir_nms = os.listdir(root_dir)
+    dirs = []
+    for dn in dir_nms:
+        dir_whole = os.path.join(root_dir, dn)
+        if os.path.isdir(dir_whole):
+            dirs.append(dir_whole)
+    return dirs
+
+def collectFiles(dirname, filetype=None):
+    files = []
+    if os.path.exists(dirname):
+        path_dir = os.path.abspath(dirname)
+        for f in os.listdir(path_dir):
+            file_path = os.path.join(dirname, f)
+            if os.path.isfile(file_path):
+                files.append(file_path)
+    return files
+
+def getRows(filename):
+    count = 0
+    thefile = open(filename, 'rb')
+    while True:
+        buffer = thefile.read(1024*8192)
+        if not buffer:
+            break
+        count += buffer.count('\n')
+    thefile.close()
+    return count
